@@ -45,7 +45,6 @@ public class Adaptermenu extends RecyclerView.Adapter<Adaptermenu.holdermn> {
         holder.nama.setText(dt.getNama());
         holder.detail.setText(dt.getDesc());
         //kondisi gambar dari drawable dijadikan sebagai background dari cardview
-        //kondisi gambar dari drawable dijadikan sebagai background dari cardview
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             holder.rl.setBackground(holder.rl.getResources().getDrawable(dt.getGambar()));
         }
@@ -53,8 +52,7 @@ public class Adaptermenu extends RecyclerView.Adapter<Adaptermenu.holdermn> {
     }
 
     @Override
-    //men
-    // ghitung ukuran dataset/jumlah data yang akan ditampilkan
+    //menghitung ukuran dataset/jumlah data yang akan ditampilkan
     public int getItemCount() {
         return daftarmenu.size();
     }
@@ -74,7 +72,7 @@ public class Adaptermenu extends RecyclerView.Adapter<Adaptermenu.holdermn> {
                 @Override
                 //ketika cardview di klik
                 public void onClick(View view) {
-                    //bmembuat intent bernama move
+                    //membuat intent bernama move
                     Intent move = new Intent(context, DetailAir.class);
                     //mengirimkan data data yang diambil ke detail air untuk di tampilkan
                     move.putExtra("nama", nama.getText());

@@ -23,7 +23,7 @@ public class Splashscreen extends Activity {
                                           //mengatur intent SplashScreen ke Main Activity
                                           Intent i = new Intent(Splashscreen.this, Login.class);
                                           startActivity(i);
-                                          //menampilkan toast
+                                          //untuk menampilkan toast
                                           Toast.makeText(Splashscreen.this, "M. YUZAR HASPANI_1202154133", Toast.LENGTH_LONG).show();
 
                                           this.finish();
