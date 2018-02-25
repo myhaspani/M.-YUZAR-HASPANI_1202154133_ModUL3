@@ -10,7 +10,8 @@ import android.widget.Toast;
 public class DetailAir extends AppCompatActivity {
     ImageView gambar, battery;
     TextView nama, detail, ukuran;
-    int hitungl = 2;
+    int hitungl = 0;
+    int levelCurrent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,37 +39,33 @@ public class DetailAir extends AppCompatActivity {
 
     //method yang akan dieksekusi ketika button minus di klik
     public void minus(View view) {
-        //apabila battery dikurangi sampai satu tingkat sebelum level terendah
-        if (battery.getDrawable().getLevel() - 1 >= 0) {
-            //volume air akan dikurangi sebanyak 2 Liter
-            hitungl=hitungl-2;
-            //set text view dengan ukuran yang sudah dihitung
-            ukuran.setText(hitungl + "L");
-            //maka set image battery dengan battery satu tingkat sebelum level terendah
-            battery.setImageLevel(battery.getDrawable().getLevel() - 1);
+        levelCurrent = battery.getDrawable().getLevel();
+        if (levelCurrent - 1 >= 0) {
+            //set text view dengan ukuran yang didapatkan - 1
+            ukuran.setText((levelCurrent - 1) + "L");
+            //Set Image Battery
+            battery.setImageLevel(levelCurrent - 1);
         } else {
-            //apabila battery dikurangi sampai level paling rendah
-            battery.setImageLevel(0);
-            //maka akan muncul toast yang memberi tahu bahwa air hampir habis
-            Toast.makeText(this, "Almost empty!", Toast.LENGTH_LONG).show();
+            //minimum levelCurrent
+            levelCurrent = 0;
+            //maka akan muncul toast yang memberi tahu bahwa air sedikit
+            Toast.makeText(this, "Air Sedikit", Toast.LENGTH_SHORT).show();
         }
     }
 
     //method yang akan dieksekusi ketika button plus di klik
     public void plus(View view) {
-        //apabila battery ditambah sampai satu tingkat sebelum level tertinggi
-        if (battery.getDrawable().getLevel() + 1 <=4) {
-            //volume air akan ditambah sebanyak 2 liter
-            hitungl=hitungl+2;
-            //set text view dengan ukuran yang sudah dihitung
-            ukuran.setText(hitungl + "L");
+        levelCurrent = battery.getDrawable().getLevel();
+        if (levelCurrent + 1 <= 6) {
+            //set text view dengan ukuran yang sudah didapatkan + 1
+            ukuran.setText((levelCurrent + 1) + "L");
             //maka set image battery dengan battery satu tingkat sebelum level tertinggi
-            battery.setImageLevel(battery.getDrawable().getLevel() + 1);
+            battery.setImageLevel(levelCurrent + 1);
         } else {
-            //apabila level battery penuh
-            battery.setImageLevel(4);
-            //maka akan muncul toast yang memberi tahu bahwa air sudah penuh
-            Toast.makeText(this, "Full!", Toast.LENGTH_LONG).show();
+            //maksimum levelCurrent
+            levelCurrent = 6;
+            //maka akan muncul toast yang memberi tahu bahwa air sudah full
+            Toast.makeText(this, "Air Sudah Full", Toast.LENGTH_SHORT).show();
         }
     }
 }
